@@ -8,7 +8,7 @@ def dataclass(name, attrs):
         attrs
             - (str): Names of desired attrs separated by spaces.
             or
-            - (list): Names of desired attrs.
+            - (list): Strs with names of desired attrs.
     Returns:
         class: "Data class" that instantiates data objects with
             desired attrs.
