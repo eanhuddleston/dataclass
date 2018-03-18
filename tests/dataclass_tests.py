@@ -8,7 +8,6 @@ class DataclassTests(unittest.TestCase):
     def test_creates_data_class_with_args_in_string(self):
         PersonData = dataclass('PersonData', 'name age')
         self.assertEqual(PersonData.__name__, 'PersonData')
-        PersonData(name='joe', age=10)
 
     def test_creates_data_class_with_args_in_list(self):
         PersonData = dataclass('PersonData', [
@@ -16,7 +15,6 @@ class DataclassTests(unittest.TestCase):
             'age',
         ])
         self.assertEqual(PersonData.__name__, 'PersonData')
-        PersonData(name='joe', age=10)
 
     def test_data_class_instantiates_data_object(self):
         PersonData = dataclass('PersonData', 'name age')
