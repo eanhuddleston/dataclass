@@ -8,7 +8,7 @@ class DataclassTests(unittest.TestCase):
     def test_creates_data_class_with_args_in_string(self):
         PersonData = dataclass('PersonData', 'name age')
         self.assertEqual(PersonData.__name__, 'PersonData')
-        data = PersonData(name='joe', age=10)
+        PersonData(name='joe', age=10)
 
     def test_creates_data_class_with_args_in_list(self):
         PersonData = dataclass('PersonData', [
@@ -16,7 +16,7 @@ class DataclassTests(unittest.TestCase):
             'age',
         ])
         self.assertEqual(PersonData.__name__, 'PersonData')
-        data = PersonData(name='joe', age=10)
+        PersonData(name='joe', age=10)
 
     def test_data_class_instantiates_data_object(self):
         PersonData = dataclass('PersonData', 'name age')
@@ -60,6 +60,14 @@ class DataclassTests(unittest.TestCase):
         person1 = PersonData(name='joe', age=10)
         person2 = PersonData(name='bob', age=10)
         self.assertTrue(person1 != person2)
+
+    def test_to_dict_works(self):
+        expected = {'name': 'joe', 'age': 10}
+
+        PersonData = dataclass('PersonData', 'name age')
+        data = PersonData(name='joe', age=10)
+        json = data.to_json()
+        self.assertEqual(json, expected)
 
     def test_str_method_works(self):
         expected = "<PersonData name: 'joe'; age: 10>"

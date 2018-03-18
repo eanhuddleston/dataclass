@@ -44,6 +44,12 @@ def dataclass(name, attrs):
                 else:
                     setattr(self, attr, None)
 
+        def to_json(self):
+            dct = {}
+            for attr in self.__slots__:
+                dct[attr] = getattr(self, attr)
+            return dct
+
         def __eq__(self, other):
             if self.__slots__ != other.__slots__:
                 return False
