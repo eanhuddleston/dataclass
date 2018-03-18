@@ -25,6 +25,8 @@ data_obj.age = 101
 ```python
 data_obj = PersonData()
 # => <PersonData name: None; age: None>
+data_obj.name = 'Bob'
+# => <PersonData name: 'Bob'; age: None>
 ```
 
 ## Prevents new attributes from being added
