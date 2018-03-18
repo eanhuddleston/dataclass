@@ -83,6 +83,22 @@ class DataclassTests(unittest.TestCase):
         data = PersonData(name='joe', age=10)
         self.assertEqual(repr(data), expected)
 
+    def test_creates_multiple_data_classes(self):
+        PersonData = dataclass('PersonData', 'name age')
+        CityData = dataclass('CityData', 'name population')
+        self.assertEqual(PersonData.__name__, 'PersonData')
+        self.assertEqual(CityData.__name__, 'CityData')
+
+        person = PersonData(name='joe', age=10)
+        self.assertEqual(person.name, 'joe')
+        self.assertEqual(person.age, 10)
+
+        city = CityData(name='St. Andrews', population=20)
+        self.assertEqual(city.name, 'St. Andrews')
+        self.assertEqual(city.population, 20)
+
+        self.assertNotEqual(person, city)
+
 
 if __name__ == '__main__':
     unittest.main()
