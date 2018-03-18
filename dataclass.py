@@ -51,6 +51,8 @@ def dataclass(name, attrs):
             return dct
 
         def __eq__(self, other):
+            if self.__class__ != other.__class__:
+                return False
             if self.__slots__ != other.__slots__:
                 return False
             for attr in self.__slots__:

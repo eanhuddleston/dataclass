@@ -53,6 +53,15 @@ class DataclassTests(unittest.TestCase):
         person2.name = 'bob'
         self.assertNotEqual(person1, person2)
 
+    def test_data_objects_not_equal_if_different_classes(self):
+        PersonData = dataclass('PersonData', 'name age')
+        CityData = dataclass('CityData', 'name age')
+
+        person = PersonData(name='joe', age=10)
+        city = CityData(name='joe', age=10)
+
+        self.assertNotEqual(person, city)
+
     def test_supports_not_equal_comparison(self):
         PersonData = dataclass('PersonData', 'name age')
         person1 = PersonData(name='joe', age=10)
