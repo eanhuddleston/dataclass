@@ -18,32 +18,32 @@ class DataclassTests(unittest.TestCase):
 
     def test_data_class_instantiates_data_object(self):
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe', age=10)
-        self.assertEqual(data.name, 'joe')
-        self.assertEqual(data.age, 10)
+        data_obj = PersonData(name='joe', age=10)
+        self.assertEqual(data_obj.name, 'joe')
+        self.assertEqual(data_obj.age, 10)
 
     def test_allowed_attrs_mutable(self):
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe', age=10)
-        data.name = 'bob'
-        self.assertEqual(data.name, 'bob')
+        data_obj = PersonData(name='joe', age=10)
+        data_obj.name = 'bob'
+        self.assertEqual(data_obj.name, 'bob')
 
     def test_you_cant_assign_new_attrs(self):
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe', age=10)
+        data_obj = PersonData(name='joe', age=10)
         with self.assertRaises(Exception):
-            data.random_thing = 'blah'
+            data_obj.random_thing = 'blah'
 
     def test_attrs_not_set_at_init_default_to_none(self):
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe')
-        data.age = 100
-        self.assertEqual(data.age, 100)
+        data_obj = PersonData(name='joe')
+        data_obj.age = 100
+        self.assertEqual(data_obj.age, 100)
 
     def test_not_inititialized_attrs_can_be_changed(self):
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe')
-        self.assertEqual(data.age, None)
+        data_obj = PersonData(name='joe')
+        self.assertEqual(data_obj.age, None)
 
     def test_supports_object_equality_comparison(self):
         PersonData = dataclass('PersonData', 'name age')
@@ -63,23 +63,23 @@ class DataclassTests(unittest.TestCase):
         expected = {'name': 'joe', 'age': 10}
 
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe', age=10)
-        json = data.to_json()
+        data_obj = PersonData(name='joe', age=10)
+        json = data_obj.to_json()
         self.assertEqual(json, expected)
 
     def test_str_method_works(self):
         expected = "<PersonData name: 'joe'; age: 10>"
 
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe', age=10)
-        self.assertEqual(str(data), expected)
+        data_obj = PersonData(name='joe', age=10)
+        self.assertEqual(str(data_obj), expected)
 
     def test_repr_method_works(self):
         expected = "PersonData(name='joe', age=10)"
 
         PersonData = dataclass('PersonData', 'name age')
-        data = PersonData(name='joe', age=10)
-        self.assertEqual(repr(data), expected)
+        data_obj = PersonData(name='joe', age=10)
+        self.assertEqual(repr(data_obj), expected)
 
     def test_creates_multiple_data_classes(self):
         PersonData = dataclass('PersonData', 'name age')
