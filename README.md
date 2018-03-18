@@ -7,6 +7,8 @@ Method for creating named “data classes” that are able to generate “data o
 
 ## How to create a data class and data object
 ```python
+import dataclass
+
 PersonData = dataclass('PersonData', 'name age’)
 data_obj = PersonData(name='Bob', age=100)
 # => <PersonData name: 'Bob'; age: 100>
