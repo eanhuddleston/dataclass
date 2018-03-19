@@ -1,7 +1,7 @@
 # dataclass
-It's sometimes useful to generate an object whose sole responsibility is to house data and be passed around. Python's standard library supplies the `namedtuple`, which usually works well for this. However, the `namedtuple` requires that all attributes have a value assigned to them, which sometimes isn't what we want.
+It's sometimes useful to generate an object whose sole responsibility is to house data and be passed around. Python's standard library supplies the `namedtuple`, which usually works well for this. However, sometimes you want to instantiate a data object and then later change the values of its attributes-- that is, for it to be mutable.
 
-This `dataclass` method is meant to mimic the API of `namedtuple` (which is very concise and clean), but allow for attributes to be initialized as `None`. Another notable difference is that attributes are mutable (though an optional argument could be added to make them immutable when needed).
+This `dataclass` method is meant to mimic the API of `namedtuple` (which is very concise and clean), but creates data objects that are mutable (and whose attributes are automatically initialized as `None` if not specified during initialization).
 
 ## Creating a data class and data object
 ```python
